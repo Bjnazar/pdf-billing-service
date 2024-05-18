@@ -1,0 +1,47 @@
+npm install -g serverless
+npm install aws-sdk
+ npm install pdfkit --save
+
+En AWS:
+usuario IAM: pdfuser
+console sign-in link: https://381492023812.signin.aws.amazon.com/console
+
+clave de acceso:
+AKIAVRUVSKICMSGY6MFI
+
+clave de acceso secreta:
+g+yO1zJlcNT27WzfT1bgfPicraz25CZ6bdtJuQYr
+
+serverless config credentials --provider aws --key <your_key> --secret <your_secret>
+serverless config credentials --provider aws --key AKIAVRUVSKICMSGY6MFI --secret g+yO1zJlcNT27WzfT1bgfPicraz25CZ6bdtJuQYr
+
+** hacer el archivo serverless.yml
+
+serverless deploy
+
+** Poner el logo en el bucket de S3 también, configurar acl!!! y permisos logo mismo (lograr que esto se haga automático para todos los pdf)
+** Saqué la configuración de bloquear acceso público de mi S3 (no sé si está bien por seguridad, pero supuestamente la gente debería poder ver sus boletas en el link)
+
+
+{
+    "Version": "2012-10-17",
+    "Id": "ExamplePolicy01",
+    "Statement": [
+        {
+            "Sid": "PublicReadGetObject",
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "s3:GetObject",
+            "Resource": "arn:aws:s3:::boletasvuelos/*"
+        },
+        {
+            "Sid": "AllowPutObjectToSpecificUser",
+            "Effect": "Allow",
+            "Principal": {
+                "AWS": "arn:aws:iam::381492023812:user/pdfuser"
+            },
+            "Action": "s3:PutObject",
+            "Resource": "arn:aws:s3:::boletasvuelos/*"
+        }
+    ]
+}

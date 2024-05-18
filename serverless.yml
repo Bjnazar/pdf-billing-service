@@ -1,0 +1,28 @@
+service: las-mascotas
+
+provider:
+  name: aws
+  runtime: nodejs20.x
+  region: us-east-2
+  iamRoleStatements:
+    - Effect: "Allow"
+      Action:
+        - "s3:PutObject"
+        - "s3:GetObject"
+      Resource: "arn:aws:s3:::boletasvuelos/*"
+
+functions:
+  generatePDF:
+    handler: pdf-lambda-function.handler
+    events:
+      - http:
+          path: generate-pdf
+          method: post
+          cors: true
+
+package:
+  individually: true
+  include:
+    - pdf-lambda-function.js
+    - package.json
+    - node_modules/** 

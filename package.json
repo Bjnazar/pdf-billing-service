@@ -1,0 +1,10 @@
+{
+    "name": "pdf-generator",
+    "version": "1.0.0",
+    "description": "Servicio de generación de boletas en pdf",
+    "dependencies": {
+        "aws-sdk": "^2.1048.0",
+        "image-downloader": "^4.3.0",
+        "pdfkit": "^0.12.3"
+    }
+}
