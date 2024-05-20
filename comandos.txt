@@ -2,18 +2,8 @@ npm install -g serverless
 npm install aws-sdk
  npm install pdfkit --save
 
-En AWS:
-usuario IAM: pdfuser
-console sign-in link: https://381492023812.signin.aws.amazon.com/console
-
-clave de acceso:
-AKIAVRUVSKICMSGY6MFI
-
-clave de acceso secreta:
-g+yO1zJlcNT27WzfT1bgfPicraz25CZ6bdtJuQYr
-
 serverless config credentials --provider aws --key <your_key> --secret <your_secret>
-serverless config credentials --provider aws --key AKIAVRUVSKICMSGY6MFI --secret g+yO1zJlcNT27WzfT1bgfPicraz25CZ6bdtJuQYr
+
 
 ** hacer el archivo serverless.yml
 
